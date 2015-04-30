@@ -1,0 +1,28 @@
+{
+	"name": "masteriv/iv-cms-6",
+	"description": "Prototype for new IV Content Management System. Less Beginner-Friendly but more modern...",
+	"minimum-stability": "dev",
+	"license": "proprietary",
+
+	"authors": [
+		{
+			"name": "Tobias Rojahn",
+			"email": "tobias@rojahn.org"
+		}
+	],
+
+
+	"autoload": {
+		"psr-4": {"Iv\\": "src/" }
+	},
+
+	"require": {
+		"twig/twig": "*",
+		"swiftmailer/swiftmailer": "*",
+		"masteriv/framework": "*",
+
+		"symfony/dependency-injection": "*",
+		"symfony/config": "*",
+		"doctrine/annotations": "*"
+	}
+}

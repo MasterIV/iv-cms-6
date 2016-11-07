@@ -16,10 +16,9 @@ use Symfony\Component\DependencyInjection\Reference;
  * Class Builder
  * Used to build a Dependency Injection Container
  * based on Symfony 2 Dependency Injection and Doctrine Annotations
- * @package Wlec\Framework\DependencyInjection
  *
  * Example Usage:
- *   $builder = new \Wlec\Framework\DependencyInjection\Builder();
+ *   $builder = new \Iv\System\DependencyInjection\Builder();
  *   builder->enableGlobalImports();
  *   $builder->readAnnotations(ROOT.'/src');
  *
@@ -60,7 +59,7 @@ class Builder {
 				$reflClass = new \ReflectionClass(str_replace('/', '\\', $match[1]));
 
 				if( $classAnnotation = $this->reader->getClassAnnotation($reflClass, self::SERVICE ))
-					$this->addService( $reflClass, nvl( $classAnnotation->data, 'value', $match[2]));
+					$this->addService( $reflClass, $classAnnotation->name ?: $match[2]);
 			}
 	}
 

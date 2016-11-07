@@ -6,6 +6,8 @@ namespace Iv\System\DependencyInjection;
  * @Annotation
  * @Target("CLASS")
  */
-class Service extends Component {
-
+class Component
+{
+	/** @var string */
+	public $name;
 }

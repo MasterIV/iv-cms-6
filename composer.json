@@ -19,8 +19,6 @@
 	"require": {
 		"twig/twig": "*",
 		"swiftmailer/swiftmailer": "*",
-		"masteriv/framework": "*",
-
 		"symfony/dependency-injection": "*",
 		"symfony/config": "*",
 		"doctrine/annotations": "*"

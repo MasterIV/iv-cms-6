@@ -1,6 +1,6 @@
 <?php
 
-namespace Iv\System\DependencyInjection;
+namespace Iv\System\Annotation;
 
 /**
  * @Annotation
@@ -10,4 +10,6 @@ class Component
 {
 	/** @var string */
 	public $name;
+	/** @var string */
+	public $collection;
 }

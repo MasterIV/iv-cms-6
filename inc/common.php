@@ -18,3 +18,9 @@ define('ROOT', __DIR__.'/..' );
 header( 'Content-Type: text/html; charset=UTF-8' );
 
 require ROOT.'/vendor/autoload.php';
+require ROOT.'/inc/functions.php';
+require ROOT.'/inc/custom.php';
+
+require ROOT.'/cache/container.php';
+$container = new IvServiceContainer(require ROOT.'/inc/config.php');
+

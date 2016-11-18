@@ -1,0 +1,7 @@
+{% for param in params %}
+
+	{% if param.type == 'parameter' %}
+		$this->getParameter('{{ param.value }}'){% elseif param.type == 'cache' %}
+		$this->loadCache('{{ param.value }}'){% else %}
+		$this->get('{{ param.value }}'){% endif %}{% if not loop.last  %},{% endif %}
+{% endfor %}

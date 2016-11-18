@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+	<meta charset="utf-8" />
+	<title>IV Entertainment Adminpanel</title>
+
+	{% for file in js %}<script type="text/javascript" src="{{ file }}"></script>{% endfor %}
+	{% for file in css %}<link rel="stylesheet" href="{{ file }}" type="text/css" />{% endfor %}
+	<link rel="stylesheet" href="{{ base_dir }}/custom.css" type="text/css" />
+</head>
+
+<body>
+
+
+<div class="navbar navbar-static-top navbar-inverse">
+	<div class="navbar-inner">
+		<a href="{{ IV_SELF }}logout" class="btn btn-inverse pull-right">Logout</a>
+		<a class="brand" href="#">IV Entertainment Adminpanel</a>
+
+		<ul class="nav">
+			{% for id, point in menu %}
+				<li class="dropdown">
+					<a href="{{ IV_SELF }}category={{ id }}">{{point.name}}</a>
+					<div class="spacer"></div>
+
+					<ul class="dropdown-menu">
+						{% for subpoint in point.children %}
+							<li>
+								<a href="{{ IV_SELF }}modul={{subpoint.file}}" class="menulink">{{subpoint.name}}</a>
+							</li>
+						{% endfor %}
+					</ul>
+				</li>
+			{% endfor %}
+		</ul>
+
+	</div>
+</div>
+
+<div id="content">
+	<noscript>
+		<div class="alert alert-error">Bitte Javascript aktivieren!</div>
+	</noscript>
+
+	{% if error %}
+		<pre class="alert alert-error">{{ error }}</pre>
+	{% endif %}
+
+	{% if success %}
+		<pre class="alert alert-success">{{ success }}</pre>
+	{% endif %}
+
+	{{content|raw}}
+</div>
+</body>
+</html>

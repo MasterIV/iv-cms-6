@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Iv\System\DependencyInjection;
+namespace Iv\Deprecated\DependencyInjection;
 
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\AnnotationRegistry;
@@ -29,7 +29,7 @@ use Symfony\Component\DependencyInjection\Reference;
  *   $builder->save(ROOT.'/cache/container.php');
  *
  */
-class Builder {
+class SymfonyBuilder {
 	const SERVICE = 'Iv\System\DependencyInjection\Service';
 	const INJECT = 'Iv\System\DependencyInjection\Inject';
 
@@ -82,7 +82,7 @@ class Builder {
 	public function save($outputFile){
 		$dumper = new PhpDumper($this->container);
 		file_put_contents($outputFile, $dumper->dump(array(
-				'class' => 'YoutixServiceContainer'
+				'class' => 'IvServiceContainer'
 		)));
 	}
 

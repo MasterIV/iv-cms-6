@@ -1,0 +1,47 @@
+<?php
+
+// @formatter:off
+use Iv\System\Injection\Container;
+
+class IvServiceContainer extends Container  {
+
+	/**
+	 * IvServiceContainer constructor.
+	 * @param array $parameters
+	 */
+	public function __construct($parameters) {
+		parent::__construct([
+{% for def in definitions %}
+			'{{ def.name }}' => 'create{{ def.name|ucfirst }}',
+{% endfor %}
+
+{% for def in collections %}
+			'{{ def.name }}' => 'create{{ def.name|ucfirst }}',
+{% endfor %}
+		], $parameters);
+	}
+
+{% for def in definitions %}
+	public function create{{ def.name|ucfirst }}() {
+		$service = new {{ def.class }}({{ include('parameter.twig', {params: def.constructor}, with_context = false) }});
+
+	{% for method in def.methods %}
+		$service->{{ method.name }}({{ include('parameter.twig', {params: method.arguments}, with_context = false) }});
+	{% endfor %}
+
+		return $service;
+	}
+
+{% endfor %}
+
+{% for def in collections %}
+	public function create{{ def.name|ucfirst }}() {
+		return [
+	{% for service in def.elements %}
+		$this->create{{ service.name|ucfirst }}(){% if not loop.last %},{% endif %}
+
+	{% endfor %}
+	];
+	}
+{% endfor %}
+}

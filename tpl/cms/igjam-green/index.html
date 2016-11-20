@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="UTF-8">
+	<title>Game Jam blubbs</title>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+	      integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ=="
+	      crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"
+	      integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
+	        integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ=="
+	        crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+<nav id="slide-menu">
+	<ul>
+		<li class="active"><a href="#">Home</a></li>
+		<li><a href="#about">News</a></li>
+		<li><a href="#contact">Rules</a></li>
+		<li><a href="#contact">FAQ</a></li>
+		<li><a href="#contact">Jams</a></li>
+		<li><a href="#contact">Games</a></li>
+		<li><a href="#contact">Contact</a></li>
+		<li class="hidden-sm"><a href="Login">Login</a></li>
+		<li class="hidden-sm"><a href="Register">Sign Up</a></li>
+		<li><a onclick="toggleMenu()">«</a></li>
+	</ul>
+</nav>
+
+<div id="wrapper">
+	<div id="header">
+		<div class="container">
+			<div class="pull-right hidden-xs info">
+				<a href="" class="button">Login</a>
+				<a href="" class="button">Sign Up</a>
+			</div>
+
+			<div class="follow">
+				Follow us on
+			</div>
+
+			<p class="logo">
+				<a href="index.html"><img src="img/logo.png" alt="InnoGames"></a><br>
+				Global Game Jam 2016 | 29.01.2016 - 17:00
+			</p>
+		</div>
+	</div>
+
+	<nav id="navigation">
+		<div class="container">
+			<div class="pull-right social">
+				<a href=""><img src="img/facebook.gif"></a>
+				<a href=""><img src="img/youtube.gif"></a>
+				<a href=""><img src="img/googleplus.gif"></a>
+				<a href=""><img src="img/twitter.gif"></a>
+			</div>
+
+			<ul class="clearfix hidden-xs hidden-sm">
+				<li class="active"><a href="#">Home</a></li>
+				<li><a href="#about">News</a></li>
+				<li><a href="#contact">Rules</a></li>
+				<li><a href="#contact">FAQ</a></li>
+				<li><a href="#contact">Jams</a></li>
+				<li><a href="#contact">Games</a></li>
+				<li><a href="#contact">Contact</a></li>
+			</ul>
+
+			<div class="visible-xs visible-sm" style="line-height: 76px; margin-left: 10px;">
+				<button onclick="toggleMenu();" class="toggle-menu">
+					<img src="img/mobile-menu.png">
+				</button>
+			</div>
+		</div>
+	</nav>
+
+	<div id="content">
+		<div class="container">
+			content
+		</div>
+	</div>
+
+	<div id="bestof">
+		<div class="container">
+			content
+		</div>
+	</div>
+
+	<div id="footer">
+		<div class="container">
+
+
+			<p class="footer-links">InnoGames.com | Imprint | Privacy plicy</p>
+
+			<p class="copyright">
+				Copyright © 2015 InnoGames. All Rights Reserved.<br>
+				Downloads linked from any page are not moderated by the site owners and may contain harmful materials. Only you
+				are responsible for any damage caused by these.<br>
+				Images (screenshots) hosted on other sites are not moderated by the site owners and may contain illegal or
+				obnoxious materials. You use this site at your own risk.
+			</p>
+
+		</div>
+	</div>
+</div>
+
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript">var menu = false;
+function toggleMenu() {
+	$('#slide-menu').css('left', ( menu = !menu ) ? '0px' : '-284px');
+	$('#wrapper').css('left', menu ? '284px' : '0px');
+}
+</script>
+
+</body>
+</html>

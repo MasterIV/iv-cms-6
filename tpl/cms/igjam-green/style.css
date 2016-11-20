@@ -1,0 +1,214 @@
+@import url(//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic);
+@import url(//fonts.googleapis.com/css?family=Ruda:900);
+
+body {
+	font-family: "Open Sans", sans-serif;
+}
+
+img {
+	max-width: 100%;
+}
+
+/* Header
+---------------------------------------- */
+
+#header {
+	background: #2D7624 url('img/header_background.jpg') no-repeat center;
+	color: white;
+	height: 200px;
+}
+
+#header p {
+	margin: 20px;
+}
+
+.logo {
+	font-size: 20px;
+	line-height: 30px;
+}
+
+#header .button {
+	display: inline-block;
+	text-decoration: none;
+	background-color: #fffc00;
+	border-bottom: 10px solid #164c09;
+	color: #111;
+	font-size: 18px;
+	line-height: 75px;
+	transition: all 0.2s ease-in 0s;
+	padding: 0 20px;
+	margin: 6px 4px;
+	transition: all 0.2s ease-in 0s;
+}
+
+#header .button:hover {
+	background: #7ed500;
+}
+
+#header .info {
+	margin: 20px 10px;
+	text-align: right;
+	text-transform: uppercase;
+}
+
+#header .follow {
+	text-transform: uppercase;
+	position: absolute;
+	bottom: 4px;
+	right: 15px;
+}
+
+#header .container {
+	height: 200px;
+}
+
+
+/* Navigation Section
+---------------------------------------- */
+
+#navigation {
+	background: #1A5F10 url('img/nav_background.gif') no-repeat center;
+	height: 80px;
+}
+
+#navigation ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+#navigation ul li {
+	float: left;
+}
+
+#navigation ul li a {
+	display: block;
+	padding: 0 20px;
+	color: #ffffff;
+	line-height: 80px;
+	text-decoration: none;
+	transition: all 0.2s ease-in 0s;
+	text-transform: uppercase;
+	font-size: 16px;
+}
+
+#navigation ul li a:hover, #navigation ul li.active a {
+	background: #61A400;
+}
+
+/* Menu Mobile
+---------------------------------------- */
+
+#wrapper {
+	padding: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	transition: all 300ms;
+}
+
+nav#slide-menu {
+	display: block;
+	position: fixed;
+	top: 0;
+	left: -284px;
+	width: 100%;
+	max-width: 284px;
+	height: 100%;
+	background-color: #155B10;
+	transition: all 300ms;
+}
+
+nav#slide-menu ul {
+	margin: 0;
+	padding: 0;
+}
+
+nav#slide-menu li {
+	background-color: #1A5F10;
+	border-bottom: 1px solid #0A4F00;
+	border-top: 1px solid #3A7F30;
+	display: block;
+	width: 100%;
+}
+
+nav#slide-menu li:hover {
+	background-color: #61A400;
+}
+
+nav#slide-menu a {
+	padding: 10px;
+	color: white;
+	display: block;
+	text-decoration: none;
+	font-size: 16px;
+}
+
+.toggle-menu {
+	margin: 8px;
+	display: inline-block;
+	background-color: #61A500;
+	padding: 5px;
+	border: none;
+	line-height: 20px;
+	border-radius: 5px;
+}
+
+/* Social media
+---------------------------------------- */
+
+.social {
+	line-height: 80px;
+	margin-right: 10px;
+}
+.social a {
+	margin: 0 2px;
+}
+
+/* Content
+---------------------------------------- */
+
+#content {
+	background: white url('img/deko.png') no-repeat top center;
+}
+
+#bestof {
+	background: white url('img/best-of-games_background.jpg') no-repeat top center;
+}
+
+/* Footer
+---------------------------------------- */
+
+#footer {
+	background: #154F0D;
+	color: white;
+	text-align: center;
+	padding: 40px;
+}
+
+.copyright {
+	font-size: 12px;
+	line-height: 1.6;
+}
+
+.footer-links {
+	font-size: 16px;
+	margin-bottom: 20px;
+}
+
+/* General Stuff
+---------------------------------------- */
+
+.container {
+	position: relative;
+	max-width: 1024px;
+	padding: 0;
+	margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+	.container {
+		width: auto;
+	}
+}

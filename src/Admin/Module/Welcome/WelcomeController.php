@@ -10,25 +10,6 @@ class WelcomeController {
 
 	/** @Route() */
 	public function actionIndex() {
-		return "pusemuckel";
+		return ['content' => 'hallo welt'];
 	}
-
-	/**
-	 * @Route("test/$id")
-	 * @param $id
-	 * @return string
-	 */
-	public function actionTest($id) {
-		return "ich bin ein id $id test";
-	}
-
-	/**
-	 * @Route("$id/test")
-	 * @param $id
-	 * @return string
-	 */
-	public function actionTest2($id) {
-		return "das ganze spiel mal $id anders rum";
-	}
-
 }

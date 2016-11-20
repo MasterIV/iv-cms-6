@@ -11,15 +11,16 @@
 		}
 	],
 
-
 	"autoload": {
-		"psr-4": {"Iv\\": "src/" }
+		"psr-4": {
+			"Iv\\": "src/" ,
+			"Cache\\": "cache/"
+		}
 	},
 
 	"require": {
 		"twig/twig": "*",
 		"swiftmailer/swiftmailer": "*",
-		"symfony/dependency-injection": "*",
 		"symfony/config": "*",
 		"doctrine/annotations": "*"
 	}

@@ -4,7 +4,7 @@
 namespace Iv\System\Configuration\Processor;
 
 
-use Iv\System\Annotation\Application;
+use Iv\System\Annotation\App;
 use Iv\System\Annotation\Controller;
 use Iv\System\Annotation\Route;
 use Iv\System\Configuration\Processor;
@@ -14,7 +14,7 @@ use Iv\System\Routing\Router;
 class RoutingProcessor implements Processor  {
 	const OUTPUT_FILE = ROOT.'/cache/routes.php';
 
-	/** @var Application[] */
+	/** @var App[] */
 	private $applications = [];
 	/** @var Controller[] */
 	private $controllers = [];
@@ -30,7 +30,7 @@ class RoutingProcessor implements Processor  {
 			$this->controllers[$class->getName()] = $annotation;
 		}
 
-		if($annotation instanceof Application) {
+		if($annotation instanceof App) {
 			if(empty($annotation->route))
 				$annotation->route = $annotation->name;
 			$this->applications[$annotation->name] = $annotation;
@@ -46,7 +46,7 @@ class RoutingProcessor implements Processor  {
 	 */
 	public function handleMethod($class, $method, $annotation) {
 		if(!$annotation instanceof Route) return;
-		$this->controllers[$class->getName()]->add( $annotation->value, $method);
+		$this->controllers[$class->getName()]->add( $annotation, $method);
 	}
 
 	private function init() {
@@ -56,20 +56,26 @@ class RoutingProcessor implements Processor  {
 		];
 	}
 
+	private function getPath(Controller $controller, $route) {
+		if(empty($controller->application))
+			return $controller->route . '/' . $route['route'];
+
+		return $this->applications[$controller->application]->route . '/'
+				. $controller->route . '/'
+				. $route['route'];
+	}
+
 	public function complete() {
 		$routes = [];
-		$tree = $this->init();
 
 		foreach($this->controllers as $controller)
 			foreach($controller->getChildren() as $route) {
-				$path = $this->applications[$controller->application]->route . '/'
-					  . $controller->route . '/'
-					  . $route['route'];
-
+				$path = $this->getPath($controller, $route);
 				unset($route['route']);
 				$routes[$path] = $route;
 			}
 
+		$tree = $this->init();
 		foreach($routes as $path => $route) {
 			$steps = explode('/', $path);
 			$pointer =& $tree;

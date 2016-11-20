@@ -6,6 +6,7 @@ namespace Iv\System\Routing;
 use Iv\System\Annotation\Inject;
 use Iv\System\Annotation\Service;
 use Iv\System\Injection\Container;
+use Iv\System\Routing\Response\Response;
 
 /** @Service() */
 class Dispatcher {
@@ -25,26 +26,52 @@ class Dispatcher {
 		$this->container = $container;
 	}
 
+	/**
+	 * Handles the given path
+	 * @param string $path
+	 */
 	public function route($path) {
 		$route = $this->router->route($path);
 
-		var_dump($route);
-		if(empty($route)) return;
+		if(empty($route))
+			$route = [
+				'controller' => 'ErrorController',
+				'method' => 'notFound',
+				'produces' => OutputType::HTML
+			];
 
+		/** @var Application $application */
+		$application = $this->container->optional($route['application']);
+		if(!empty($application) && !$application->isAccessible($route))
+			$route = [
+				'controller' => 'ErrorController',
+				'method' => 'forbidden',
+				'produces' => OutputType::HTML
+			];
+
+		/** @var Response $response */
+		$response = $this->container->create($route['produces'].'Response');
+
+		// Environment that can be accessed through controller parameter
+		$route['$path'] = $path;
+		$route['$response'] = $response;
+
+		$response->handle($route, $application, $this->processRoute($route));
+	}
+
+	/**
+	 * @param $route
+	 * @return mixed
+	 */
+	private function processRoute($route) {
 		$controller = $this->container->get($route['controller']);
-		if($route['args']) {
-			$refl = new \ReflectionMethod($controller, $route['method']);
-			$args = [];
+		$method = new \ReflectionMethod($controller, $route['method']);
+		$args = [];
 
-			foreach($refl->getParameters() as $p)
-				$args[] = $route['$'.$p->getName()];
+		foreach ($method->getParameters() as $p)
+			$args[] = $route['$' . $p->getName()];
 
-			$result = $refl->invokeArgs($controller, $args);
-		} else {
-			$result = call_user_func([$controller, $route['method']]);
-		}
-
-		echo "<br>".$result;
+		return $method->invokeArgs($controller, $args);
 	}
 
 }

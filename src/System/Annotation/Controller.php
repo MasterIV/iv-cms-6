@@ -22,12 +22,13 @@ class Controller extends Component {
 		return $result;
 	}
 
-	public function add($route, \ReflectionMethod $method) {
+	public function add(Route $route, \ReflectionMethod $method) {
 		$this->children[] = [
-			'route' => $route,
+			'route' => $route->route,
 			'application' => $this->application,
 			'controller' => $this->name,
-			'method' => $method->getName()
+			'method' => $method->getName(),
+			'produces' => $route->produces
 		];
 	}
 

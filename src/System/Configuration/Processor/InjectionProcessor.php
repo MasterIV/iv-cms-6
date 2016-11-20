@@ -23,7 +23,14 @@ class InjectionProcessor implements Processor  {
 
 	const TEMPLATE_DIR = ROOT.'/tpl/system/injection';
 	const OUTPUT_FILE = ROOT.'/cache/container.php';
-	
+
+	/**
+	 * InjectionProcessor constructor.
+	 */
+	public function __construct() {
+		$this->definitions = require ROOT.'/inc/services.php';
+	}
+
 	/**
 	 * @param \ReflectionClass $class
 	 * @param $annotation
@@ -51,7 +58,7 @@ class InjectionProcessor implements Processor  {
 	 * @return \Iv\System\Injection\Parameter[]
 	 * @throws \Exception
 	 */
-	private function readDependencies($dependencies) {
+	public static function readDependencies($dependencies) {
 		$params = [];
 
 		foreach($dependencies as $d)

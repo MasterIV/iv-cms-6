@@ -4,9 +4,15 @@
 	<meta charset="utf-8" />
 	<title>IV Entertainment Adminpanel</title>
 
-	{% for file in js %}<script type="text/javascript" src="{{ file }}"></script>{% endfor %}
-	{% for file in css %}<link rel="stylesheet" href="{{ file }}" type="text/css" />{% endfor %}
-	<link rel="stylesheet" href="{{ base_dir }}/custom.css" type="text/css" />
+	{% for file in js %}
+		<script type="text/javascript" src="{{ file }}"></script>
+	{% endfor %}
+
+	{% for file in css %}
+		<link rel="stylesheet" href="{{ file }}" type="text/css" />
+	{% endfor %}
+
+	<link rel="stylesheet" href="{{ base_dir }}/main.css" type="text/css" />
 </head>
 
 <body>

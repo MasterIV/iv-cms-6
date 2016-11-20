@@ -4,8 +4,6 @@
 namespace Iv\System\Injection;
 
 
-use Symfony\Component\Config\Definition\Exception\Exception;
-
 class Container {
 	private $methods = [];
 	private $services = [];
@@ -22,6 +20,12 @@ class Container {
 		$this->services['Container'] = $this;
 	}
 
+	public function create($service) {
+		if(empty($this->methods[$service]))
+			throw new \Exception('invalid service: '.$service);
+		return call_user_func([$this, $this->methods[$service]]);
+	}
+
 	protected function loadCache( $file ) {
 		$fileName = ROOT.'/cache/'.$file.'.php';
 		return is_file($fileName) ? include $fileName : null;
@@ -29,8 +33,14 @@ class Container {
 
 	public function get($service) {
 		if(empty($this->services[$service]))
-			$this->instantiate($service);
+			$this->services[$service] = $this->create($service);
 		return $this->services[$service];
+	}
+
+	public function optional($service) {
+		if(empty($this->methods[$service]) && empty($this->services[$service]))
+			return null;
+		return $this->get($service);
 	}
 
 	public function setParameter($key, $value) {
@@ -39,11 +49,5 @@ class Container {
 
 	public function getParameter($key) {
 		return $this->parameters[$key];
-	}
-
-	private function instantiate($service) {
-		if(empty($this->methods[$service]))
-			throw new Exception('invalid service: '.$service);
-		$this->services[$service] = call_user_func([$this, $this->methods[$service]]);
 	}
 }

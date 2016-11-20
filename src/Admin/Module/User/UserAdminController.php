@@ -7,18 +7,18 @@ use Iv\System\Annotation\Module;
 use Iv\System\Annotation\Route;
 
 /**
- * Class RoleAdminController
+ * Class UserAdminContoller
  * @package Iv\Admin\Module\User
  * @Module(
  *     application="admin",
- *     route="/roles",
+ *     route="/user",
  *     category="Userverwaltung",
- *     caption="Rollen",
+ *     caption="Benutzer",
  *     icon="none.png")
  */
-class RoleAdminController {
+class UserAdminController {
 	/** @Route() */
 	public function actionIndex() {
-		return ['content' => 'dies ist ide rollenverwaltung'];
+		return ['content' => 'dies ist ide userverwaltung'];
 	}
 }

@@ -94,10 +94,6 @@ class RoutingProcessor implements Processor  {
 		}
 
 		echo "\tWrtiting Routes...\n";
-		file_put_contents(self::OUTPUT_FILE, '<?php return '.preg_replace(
-				['/\s*array \(/', '/\)/s', '/\[\s*\]/s', '/  /'],
-				[' [', ']', '[]', "\t"],
-				var_export($tree, true)
-			).";\n\n");
+		dumpData(self::OUTPUT_FILE, $tree);
 	}
 }

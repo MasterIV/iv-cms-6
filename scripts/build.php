@@ -2,6 +2,7 @@
 
 define('ROOT',__DIR__.'/..');
 require ROOT.'/vendor/autoload.php';
+require ROOT.'/inc/functions.php';
 
 $builder = new \Iv\System\Configuration\Reader();
 $builder->readAnnotations(ROOT.'/src');

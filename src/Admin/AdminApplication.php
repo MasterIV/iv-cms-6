@@ -26,7 +26,15 @@ class AdminApplication implements Application {
 
 	public function getTemplate($route) {
 		$this->loader->addPath(ROOT . self::TEMPLATE_DIR);
+
 		$this->loader->addGlobal('base_dir', ROOT_DIR . self::TEMPLATE_DIR);
+		$this->loader->addGlobal('controller_self', ROOT_DIR . $route['$path']);
+		$this->loader->addGlobal('iv_self', ROOT_DIR . $route['$path'] . '?');
+
+
+		$this->loader->addGlobal('menu', require ROOT . '/cache/admin_menu.php');
+
+
 		return $this->loader->load('index');
 	}
 
